@@ -26,6 +26,7 @@ DF_ZONE=$(grep zone df-desc.txt | awk {'print $3'})
 PROJECT_ID=$(gcloud config get-value project)
 NETWORK=$(grep "network " df-desc.txt | awk {'print $3'})
 VPC_PEERING="$DF_INSTANCE_NAME"-vpc-peering
+rm df-desc.txt
 echo "==============================="
 echo "Current Project Information:"
 echo "PROJECT-ID: $PROJECT_ID"
