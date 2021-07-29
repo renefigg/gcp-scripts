@@ -7,4 +7,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-ab -n $1 -c $2 -p out.json -T application/json -rk https://0.0.0.0:4000/
+ab -n $1 -c $2 -p out.json -T application/json \
+-H 'Authorization: Bearer xxxx' \
+-H 'apikey: xxx' \
+-rk https://host/fundacional/v2/pedidos
+
