@@ -1,8 +1,4 @@
-{
-    "Remision_Orden_de_venta": "%NUMBER%",
-    "EstadoRenglonBitacora": "ETOT",
-    "Tipo_de_documento": "OV",
-    "Estatus_del_documento": "ES",
+{"Remision_Orden_de_venta": "%NUMBER%","EstadoRenglonBitacora": "ETOT","Tipo_de_documento": "OV","Estatus_del_documento": "ES",
     "Fecha_de_cambio_de_estatus": "2021-05-03",
     "Hora_de_cambio_de_estatus": "13:25:00",
     "Usuario_de_cambio_de_estatus": "uAct",

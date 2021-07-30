@@ -2,17 +2,22 @@
 
 # Generate Test Data for ab
 if [ -z "$1" ]; then
-    echo -e "\n use: generate-testdata template tag number"
+    echo -e "\n use: generate-testdata template tag begin end"
     echo "template: template file with tags"
     echo "tag: tag to replace"
-    echo "number: number of ocurrencies" 
+    echo "begin: start number of ocurrencies" 
+    echo "end: end number of ocurrencies" 
+    echo "prefix: prefix character"
+
     echo -e "\n"
     exit 1
 fi
 
-END=$3
+BEGIN=$3
+END=$4
+PREFIX=$5
 rm out.json 
-for i in $(eval echo "{1..$END}") 
-   do cat $1 | sed "s/$2/$i/" >> out.json; 
+for i in $(eval echo "{$BEGIN..$END}") 
+   do cat $1 | sed "s/$2/$PREFIX$i/" >> out.json; 
 done
  
