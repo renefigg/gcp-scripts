@@ -8,6 +8,7 @@ if [ -z "$1" ]; then
     echo "begin: start number of ocurrencies"
     echo "end: end number of ocurrencies"
     echo "prefix: prefix character"
+    echo "out-file: Output File"
 
     echo -e "\n"
     exit 1

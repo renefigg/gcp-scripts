@@ -8,17 +8,20 @@ if [ -z "$1" ]; then
 fi
 
 CONCURRENCY=$2
-REQUESTS=$(( $(($1))-$(($CONCURRENCY)) ))
+REQUESTS=$1
 DELAY=$3
 r=0
 l=1
+rm -Rf output
+mkdir output
 while [ $r -le $REQUESTS ]
 do
     for c in $(eval echo "{1..$CONCURRENCY}")
     do
         r=$(($r+1))
-        echo "thread: $c.$l , request: $r"
-        curl -d @data/payload.$r.json -H 'Content-Type: application/json' -X POST "$4" &
+        echo -n  -e "thread:$l , request: $r/$REQUESTS \r" 
+        curl localhost > output/result.$r.html & 
+#       curl -d @data/payload.$r.json -H 'Content-Type: application/json' -X POST "$4" &
     done
     l=$(($l+1))
     sleep $DELAY
