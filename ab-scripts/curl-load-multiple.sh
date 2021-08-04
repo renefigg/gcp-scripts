@@ -14,8 +14,10 @@ END=$2
 PREFIX=$3
 rm -f data/*
 for i in $(eval echo "{$BEGIN..$END}")
-   do cat $TEMPLATE | sed "s/$LABEL/$PREFIX$i/" > data/payload.$i.json;
-done
+   do
+     echo -n -e "data: payload.$i.json\r"
+     cat $TEMPLATE | sed "s/$LABEL/$PREFIX$i/" > data/payload.$i.json;
+   done
 
 CONCURRENCY=$4
 REQUESTS=$(( $(($END - $BEGIN + 1))-$(($CONCURRENCY)) ))
@@ -29,7 +31,7 @@ do
     do
         r=$(($r+1))
         echo -n -e "thread: $c.$l , request: $r\r"
-        curl -s -d @data/payload.$r.json -H 'Content-Type: application/json' -X POST "$6" > data/out.$r.log &
+        ./timed_curl.sh data/payload.$r.json data/out.$r.log $URL &
     done
     l=$(($l+1))
     sleep $DELAY
